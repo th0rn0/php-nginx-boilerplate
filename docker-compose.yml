@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  app:
+    build:
+      context: .
+    working_dir: /web/html/
+    volumes:
+      - $PWD/src/:/web/html/
+      - $PWD/resources/certs:/etc/nginx/certs
+      - $PWD/resources/secrets:/run/secrets
+    env_file: $PWD/src/.env
+    container_name: example_app
+    ports:
+      - 80:80
+      - 443:443
+  database:
+    image: mysql:5.6
+    volumes:
+      - example_database:/var/lib/mysql
+    env_file: $PWD/src/.env
+    ports:
+      - 3306:3306
+    container_name: example_database
+volumes:
+  example_database:
+    name: example_database
