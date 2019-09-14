@@ -14,10 +14,6 @@ COPY resources/docker/root /
 WORKDIR $NGINX_DOCUMENT_ROOT
 COPY src/ $NGINX_DOCUMENT_ROOT
 
-# Copy Storage for Bind Mounts - Fix for Bind Mounts on Host system
-
-RUN cp -a $NGINX_DOCUMENT_ROOT/storage /tmp/storage
-
 # Default Command
 
 ENTRYPOINT ["/run/docker-entrypoint.sh"]
