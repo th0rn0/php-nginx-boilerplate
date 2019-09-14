@@ -21,27 +21,5 @@ then
 	fi
 fi
 
-# Clear the config cache and load in new Variables
-php artisan config:cache
-
-# Only migrate database if DB_MIGRATE env variable is set to true
-if [ -n "$DB_MIGRATE" ]
-then
-	if [ "$DB_MIGRATE" = "true" ]
-	then
-		php artisan migrate
-	fi
-fi
-
-if [ "$APP_KEY_FLAG" = "true" ]
-then
-	echo "---------------"
-	echo "ATTENTION! EXTRA ACTION NEEDED:"
-	echo "You must now restart the manager with the 'APP_KEY=${APP_KEY}' env variable set."
-	echo "Without this, the manager will not work!"
-	echo "Keep this safe!"
-	echo "---------------"
-fi
-
 # Supervisor Default
 /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
