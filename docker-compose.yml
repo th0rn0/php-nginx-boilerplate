@@ -9,18 +9,18 @@ services:
       - $PWD/resources/certs:/etc/nginx/certs
       - $PWD/resources/secrets:/run/secrets
     env_file: $PWD/src/.env
-    container_name: api-connector-app
+    container_name: example_app
     ports:
       - 80:80
       - 443:443
   database:
     image: mysql:5.6
     volumes:
-      - api-connector-database:/var/lib/mysql
+      - example_database:/var/lib/mysql
     env_file: $PWD/src/.env
     ports:
       - 3306:3306
-    container_name: api-connector-database
+    container_name: example_database
 volumes:
-  api-connector-database:
-    name: api-connector-database
+  example_database:
+    name: example_database
